@@ -1,21 +1,48 @@
+using System;
+using Strategy.DanceBehavior;
 using Strategy.FlyBehavior;
 using Strategy.QuackBehavior;
 
 namespace Strategy.Duck
 {
-    public class CDuck
+    public abstract class Duck
     {
-        protected IQuackBehavior _quackBehavior;
-        protected IFlyBehavior _flyBehavior;
+        private readonly IQuackBehavior _quackBehavior;
+        private IFlyBehavior _flyBehavior;
+        private IDanceBehavior _danceBehavior;
 
-        public void performQuack()
+        protected Duck( IQuackBehavior quackBehavior, IFlyBehavior flyBehavior, IDanceBehavior danceBehavior)
+        {
+            _quackBehavior = quackBehavior;
+            _danceBehavior = danceBehavior;
+            SetFlyBehavior(flyBehavior);
+        }
+
+        public void Quack()
         {
             _quackBehavior.Quack();
         }
         
-        public void performFly()
+        public static void Swim()
+        {
+            Console.WriteLine("I'm swimming");
+        }
+
+        public void Fly()
         {
             _flyBehavior.Fly();
         }
+        
+        public virtual void Dance()
+        {
+            _danceBehavior.Dance();
+        }
+
+        public void SetFlyBehavior(IFlyBehavior flyBehavior)
+        {
+            _flyBehavior = flyBehavior;
+        }
+
+        public abstract void Display();
     }
 }

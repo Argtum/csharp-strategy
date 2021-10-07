@@ -2,11 +2,11 @@ using System;
 
 namespace Strategy.FlyBehavior
 {
-    public class TryFly : IFlyBehavior
+    public class FlyWithWings : IFlyBehavior
     {
         public void Fly()
         {
-            Console.WriteLine("Try fly!");
+            Console.WriteLine("I'm flying with wings!");
         }
     }
 }
